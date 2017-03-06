@@ -23,7 +23,7 @@
     },
     "autoload": {
         "files": [
-            "src/Appstract/Options/helpers.php"
+            "src/helpers.php"
         ],
         "psr-4": {
             "Appstract\\Options\\": "src"

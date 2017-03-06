@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 class OptionsServiceProvider extends ServiceProvider
 {
+    protected $options;
+
     /**
      * Bootstrap the application services.
      */
@@ -14,9 +16,9 @@ class OptionsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->registerMigrations();
 
-            $this->publishes([
-                __DIR__.'/../config/options.php' => config_path('options.php'),
-            ], 'config');
+            $this->commands([
+                \Appstract\Options\Console\OptionSetCommand::class,
+            ]);
         }
     }
 
@@ -25,11 +27,7 @@ class OptionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $items = Option::all();
-
-        $this->app->bind('option', new OptionRepository($items));
-
-        // $this->mergeConfigFrom(__DIR__.'/../config/options.php', 'options');
+        $this->app->bind('option', \Appstract\Options\Option::class);
     }
 
     /**
