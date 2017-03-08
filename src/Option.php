@@ -9,7 +9,7 @@ class Option extends Model
     /**
      * Indicates if the model should be timestamped.
      *
-     * @var boolean
+     * @var bool
      */
     public $timestamps = false;
 
@@ -20,7 +20,7 @@ class Option extends Model
      */
     protected $fillable = [
         'key',
-        'value'
+        'value',
     ];
 
     /**
@@ -46,8 +46,6 @@ class Option extends Model
         if ($option = self::where('key', $key)->first()) {
             return $option->value;
         }
-
-        return null;
     }
 
     /**
