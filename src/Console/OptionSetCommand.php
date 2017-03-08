@@ -31,5 +31,7 @@ class OptionSetCommand extends Command
     public function handle()
     {
         Option::set($this->argument('key'), $this->argument('value'));
+
+        $this->info('Option added.');
     }
 }
