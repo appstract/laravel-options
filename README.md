@@ -15,11 +15,63 @@ You can install the package via composer:
 composer require appstract/laravel-options
 ```
 
+### Provider
+
+Then add the ServiceProvider to your `config/app.php` file:
+
+```
+'providers' => [
+    ...
+
+    Appstract\Options\OptionsServiceProvider::class
+
+    ....
+```
+
+### Alias
+
+Also add it as alias, so you can use the facade easily in your app.
+
+```
+'aliases' => [
+    ...
+
+    'Option' => Appstract\Options\OptionFacade::class,
+
+    ...
+]
+```
+
+### Publish, migrate
+
+By running `php artisan vendor:publish --provider="Appstract\Options\OptionsServiceProvider"` in your project all files for this package will be published. For this package, it's only a migration. Run `php artisan migrate` to migrate the table. There will now be an `options` table in your database.
+
 ## Usage
 
-``` php
-$skeleton = new Appstract\Skeleton();
-echo $skeleton->echoPhrase('Hello, Appstract!');
+With the `option()` helper, we can get and set options:
+
+```
+// Get option
+option('someKey');
+
+// Set option
+option(['someKey' => 'someValue']);
+```
+
+If you want to check if an option exists, you can use the facade:
+
+```
+use Option;
+
+$check = Option::exists('someKey');
+```
+
+### Console
+
+It is also possible to set options within the console:
+
+```
+php artisan option:set {someKey} {someValue}
 ```
 
 ## Testing
