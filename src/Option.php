@@ -29,7 +29,7 @@ class Option extends Model
      * @param  string  $key
      * @return bool
      */
-    public function has($key)
+    public function exists($key)
     {
         self::where('key', $key)->first() ? true : false;
     }
