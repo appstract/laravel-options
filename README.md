@@ -25,7 +25,7 @@ Then add the ServiceProvider to your `config/app.php` file:
 
     Appstract\Options\OptionsServiceProvider::class
 
-    ....
+    ...
 ```
 
 ### Alias
