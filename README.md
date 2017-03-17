@@ -11,7 +11,7 @@ Global key-value store in the database
 
 You can install the package via composer:
 
-``` bash
+```bash
 composer require appstract/laravel-options
 ```
 
@@ -19,7 +19,7 @@ composer require appstract/laravel-options
 
 Then add the ServiceProvider to your `config/app.php` file:
 
-```
+```php
 'providers' => [
     ...
 
@@ -32,7 +32,7 @@ Then add the ServiceProvider to your `config/app.php` file:
 
 Also add it as alias, so you can use the facade easily in your app.
 
-```
+```php
 'aliases' => [
     ...
 
@@ -50,7 +50,7 @@ By running `php artisan vendor:publish --provider="Appstract\Options\OptionsServ
 
 With the `option()` helper, we can get and set options:
 
-```
+```php
 // Get option
 option('someKey');
 
@@ -60,7 +60,7 @@ option(['someKey' => 'someValue']);
 
 If you want to check if an option exists, you can use the facade:
 
-```
+```php
 use Option;
 
 $check = Option::exists('someKey');
@@ -70,13 +70,13 @@ $check = Option::exists('someKey');
 
 It is also possible to set options within the console:
 
-```
+```bash
 php artisan option:set {someKey} {someValue}
 ```
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
