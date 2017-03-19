@@ -31,7 +31,7 @@ class Option extends Model
      */
     public function exists($key)
     {
-        self::where('key', $key)->first() ? true : false;
+        return self::where('key', $key)->exists();
     }
 
     /**
@@ -46,6 +46,8 @@ class Option extends Model
         if ($option = self::where('key', $key)->first()) {
             return $option->value;
         }
+
+        return $default;
     }
 
     /**
