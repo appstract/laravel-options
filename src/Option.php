@@ -62,7 +62,11 @@ class Option extends Model
         $keys = is_array($key) ? $key : [$key => $value];
 
         foreach ($keys as $key => $value) {
-            self::create(['key' => $key, 'value' => $value]);
+            $option = self::firstOrNew(['key' => $key]);
+
+            $option->value = $value;
+
+            $option->save();
         }
     }
 }
