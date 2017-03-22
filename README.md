@@ -67,6 +67,9 @@ use Option;
 $check = Option::exists('someKey');
 ```
 
+Setting an value to a key that already exists will [overwrite the value](https://github.com/appstract/laravel-options/releases/tag/0.2.0).
+
+
 ### Console
 
 It is also possible to set options within the console:
