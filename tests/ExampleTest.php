@@ -1,6 +1,6 @@
 <?php
 
-namespace Appstract\Skeleton\Test;
+namespace Appstract\Options\Test;
 
 class ExampleTest extends \PHPUnit_Framework_TestCase
 {
