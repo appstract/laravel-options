@@ -39,5 +39,15 @@
     },
     "config": {
         "sort-packages": true
-  }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Appstract\\Options\\OptionsServiceProvider"
+            ],
+            "aliases": {
+                "Option": "Appstract\\Options\\OptionFacade"
+            }
+        }
+    }
 }
