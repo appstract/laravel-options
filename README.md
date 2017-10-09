@@ -17,7 +17,7 @@ composer require appstract/laravel-options
 
 ### Provider
 
-Then add the ServiceProvider to your `config/app.php` file:
+In Laravel 5.5 the package will autoregister the Service Provider. In older versions, you must add the ServiceProvider to your `config/app.php` file:
 
 ```php
 'providers' => [
@@ -31,7 +31,7 @@ Then add the ServiceProvider to your `config/app.php` file:
 
 ### Alias
 
-Also add it as alias, so you can use the facade easily in your app.
+In Laravel 5.5 the package will autoregister the Alias. Otherwise add it manually, so you can use the facade easily in your app.
 
 ```php
 'aliases' => [
