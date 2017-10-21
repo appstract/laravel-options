@@ -23,3 +23,16 @@ if (! function_exists('option')) {
         return app('option')->get($key, $default);
     }
 }
+
+if (! function_exists('option_exists')) {
+    /**
+     * Check the specified option exits.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    function option_exists($key)
+    {
+        return app('option')->exists($key);
+    }
+}
