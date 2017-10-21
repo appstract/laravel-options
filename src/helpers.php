@@ -31,12 +31,8 @@ if (! function_exists('option_exists')) {
      * @param  string  $key
      * @return mixed
      */
-    function option_exists($key = null)
+    function option_exists($key)
     {
-        if (is_null($key)) {
-            return false;
-        }
-
         return app('option')->exists($key);
     }
 }
