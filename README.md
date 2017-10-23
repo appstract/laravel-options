@@ -57,6 +57,9 @@ option('someKey');
 
 // Set option
 option(['someKey' => 'someValue']);
+
+// Check the option exists
+option_exists('someKey');
 ```
 
 If you want to check if an option exists, you can use the facade:
