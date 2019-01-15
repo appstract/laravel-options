@@ -15,34 +15,6 @@ You can install the package via composer:
 composer require appstract/laravel-options
 ```
 
-### Provider
-
-In Laravel 5.5 the package will autoregister the Service Provider. In older versions, you must add the ServiceProvider to your `config/app.php` file:
-
-```php
-'providers' => [
-    ...
-
-    Appstract\Options\OptionsServiceProvider::class
-
-    ...
-]
-```
-
-### Alias
-
-In Laravel 5.5 the package will autoregister the Alias. Otherwise add it manually, so you can use the facade easily in your app.
-
-```php
-'aliases' => [
-    ...
-
-    'Option' => Appstract\Options\OptionFacade::class,
-
-    ...
-]
-```
-
 ### Publish, migrate
 
 By running `php artisan vendor:publish --provider="Appstract\Options\OptionsServiceProvider"` in your project all files for this package will be published. For this package, it's only a migration. Run `php artisan migrate` to migrate the table. There will now be an `options` table in your database.
@@ -57,6 +29,9 @@ option('someKey');
 
 // Set option
 option(['someKey' => 'someValue']);
+
+// Check the option exists
+option_exists('someKey');
 ```
 
 If you want to check if an option exists, you can use the facade:
