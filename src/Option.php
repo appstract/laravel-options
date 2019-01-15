@@ -69,4 +69,19 @@ class Option extends Model
             $option->save();
         }
     }
+
+    /**
+     * Delete the specified option value.
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function delete($key)
+    {
+        if ($option = self::where('key', $key)->first()) {
+            return $option->delete();
+        }
+
+        return false;
+    }
 }
