@@ -8,7 +8,7 @@ if (! function_exists('option')) {
      *
      * @param  array|string  $key
      * @param  mixed  $default
-     * @return mixed
+     * @return mixed|\Appstract\Options\Option
      */
     function option($key = null, $default = null)
     {

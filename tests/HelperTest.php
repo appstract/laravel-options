@@ -44,4 +44,15 @@ class HelperTest extends BaseTest
         option(['foo' => 'bar']);
         $this->assertTrue(option_exists('foo'));
     }
+
+    /**
+     * @covers ::option()->remove($key)
+     */
+    public function testRemove() {
+        option(['foo' => 'bar']);
+        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
+        option()->remove('foo');
+        $this->assertDatabaseMissing('options', ['key' => 'foo', 'value' => 'bar']);
+
+    }
 }

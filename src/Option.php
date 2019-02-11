@@ -71,12 +71,12 @@ class Option extends Model
     }
 
     /**
-     * Delete the specified option value.
+     * Remove/delete the specified option value.
      *
      * @param  string  $key
      * @return mixed
      */
-    public function deleteKey($key)
+    public function remove($key)
     {
         if ($option = self::where('key', $key)->first()) {
             return $option->delete();
