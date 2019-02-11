@@ -14,17 +14,13 @@ class OptionsServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes(
-                [
-                    __DIR__ . '/../database/migrations' => database_path('migrations'),
-                ], 'migrations'
-            );
+            $this->publishes([
+                __DIR__.'/../database/migrations' => database_path('migrations'),
+            ], 'migrations');
 
-            $this->commands(
-                [
-                    Console\OptionSetCommand::class,
-                ]
-            );
+            $this->commands([
+                \Appstract\Options\Console\OptionSetCommand::class,
+            ]);
         }
     }
 
@@ -33,6 +29,6 @@ class OptionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('option', Option::class);
+        $this->app->bind('option', \Appstract\Options\Option::class);
     }
 }
