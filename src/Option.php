@@ -74,6 +74,6 @@ class Option extends Model
      */
     public function remove($key)
     {
-		return (bool)self::where('key', $key)->delete();
+        return (bool)self::where('key', $key)->delete();
     }
 }
