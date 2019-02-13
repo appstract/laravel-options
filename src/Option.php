@@ -43,7 +43,7 @@ class Option extends Model
      */
     public function get($key, $default = null)
     {
-        if ($option = self::where('key', $key)->first()) {
+        if ($option = self::where('key', $key)->select('value')->first()) {
             return $option->value;
         }
 
@@ -62,11 +62,7 @@ class Option extends Model
         $keys = is_array($key) ? $key : [$key => $value];
 
         foreach ($keys as $key => $value) {
-            $option = self::firstOrNew(['key' => $key]);
-
-            $option->value = $value;
-
-            $option->save();
+            self::firstOrCreate(['key' => $key], ['value' => $value]);
         }
     }
 
@@ -74,14 +70,10 @@ class Option extends Model
      * Remove/delete the specified option value.
      *
      * @param  string  $key
-     * @return mixed
+     * @return bool
      */
     public function remove($key)
     {
-        if ($option = self::where('key', $key)->first()) {
-            return $option->delete();
-        }
-
-        return false;
+		return (bool)self::where('key', $key)->delete();
     }
 }
