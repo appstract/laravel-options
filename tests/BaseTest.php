@@ -31,7 +31,7 @@ abstract class BaseTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    public function setUp()
     {
         parent::setUp();
 
