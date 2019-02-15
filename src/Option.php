@@ -43,7 +43,7 @@ class Option extends Model
      */
     public function get($key, $default = null)
     {
-        if ($option = self::where('key', $key)->select('value')->first()) {
+        if ($option = self::where('key', $key)->first()) {
             return $option->value;
         }
 
@@ -64,6 +64,8 @@ class Option extends Model
         foreach ($keys as $key => $value) {
             self::updateOrCreate(['key' => $key], ['value' => $value]);
         }
+
+        // @todo: return the option
     }
 
     /**
