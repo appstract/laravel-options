@@ -9,7 +9,7 @@ class HelperTest extends BaseTest
     /**
      * @covers ::option
      */
-    public function testGetInstance()
+    public function test_get_instance()
     {
         $this->assertInstanceOf(Option::class, option());
     }
@@ -17,42 +17,48 @@ class HelperTest extends BaseTest
     /**
      * @covers ::option([$key => $value])
      */
-    public function testSet()
+    public function test_set()
     {
         option(['foo' => 'bar']);
+
         $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
     }
 
     /**
      * @covers ::option($key, $default)
      */
-    public function testGet()
+    public function test_get()
     {
         $this->assertEquals('baz', option('foo', 'baz'));
 
         option(['foo' => 'bar']);
+
         $this->assertEquals('bar', option('foo', 'baz'));
     }
 
     /**
      * @covers ::option_exists($key)
      */
-    public function testExists()
+    public function test_exists()
     {
         $this->assertFalse(option_exists('foo'));
 
         option(['foo' => 'bar']);
+
         $this->assertTrue(option_exists('foo'));
     }
 
     /**
      * @covers ::option()->remove($key)
      */
-    public function testRemove()
+    public function test_remove()
     {
         option(['foo' => 'bar']);
+
         $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
+
         option()->remove('foo');
+
         $this->assertDatabaseMissing('options', ['key' => 'foo', 'value' => 'bar']);
     }
 }
