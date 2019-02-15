@@ -27,10 +27,16 @@ class HelperTest extends BaseTest
     /**
      * @covers ::option($key, $default)
      */
-    public function test_get()
+    public function test_get_default()
     {
         $this->assertEquals('baz', option('foo', 'baz'));
+    }
 
+    /**
+     * @covers ::option($key, $default)
+     */
+    public function test_get()
+    {
         option(['foo' => 'bar']);
 
         $this->assertEquals('bar', option('foo', 'baz'));
