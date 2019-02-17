@@ -6,48 +6,36 @@ use Appstract\Options\Option;
 
 class HelperTest extends BaseTest
 {
-    // Test Travis
-
-    /**
-     * @covers ::option
-     */
-    public function test_get_instance()
+    /** @test */
+    public function it_can_get_instance()
     {
         $this->assertInstanceOf(Option::class, option());
     }
 
-    /**
-     * @covers ::option([$key => $value])
-     */
-    public function test_set()
+    /** @test */
+    public function it_can_set()
     {
         option(['foo' => 'bar']);
 
         $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
     }
 
-    /**
-     * @covers ::option($key, $default)
-     */
-    public function test_get_default()
+    /** @test */
+    public function it_can_get_default()
     {
         $this->assertEquals('baz', option('foo', 'baz'));
     }
 
-    /**
-     * @covers ::option($key, $default)
-     */
-    public function test_get()
+    /** @test */
+    public function it_can_get()
     {
         option(['foo' => 'bar']);
 
         $this->assertEquals('bar', option('foo', 'baz'));
     }
 
-    /**
-     * @covers ::option_exists($key)
-     */
-    public function test_exists()
+    /** @test */
+    public function it_can_check_if_exists()
     {
         $this->assertFalse(option_exists('foo'));
 
@@ -56,10 +44,8 @@ class HelperTest extends BaseTest
         $this->assertTrue(option_exists('foo'));
     }
 
-    /**
-     * @covers ::option()->remove($key)
-     */
-    public function test_remove()
+    /** @test */
+    public function it_can_remove()
     {
         option(['foo' => 'bar']);
 
