@@ -6,6 +6,8 @@ use Appstract\Options\Option;
 
 class HelperTest extends BaseTest
 {
+    // Test Travis
+
     /**
      * @covers ::option
      */
