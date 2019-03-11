@@ -23,6 +23,10 @@ class Option extends Model
         'value',
     ];
 
+    protected $casts = [
+        'value' => 'json',
+    ];
+
     /**
      * Determine if the given option value exists.
      *
