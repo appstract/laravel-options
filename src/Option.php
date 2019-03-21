@@ -61,8 +61,12 @@ class Option extends Model
     {
         $keys = is_array($key) ? $key : [$key => $value];
 
-        foreach ($keys as $key => $value) {
-            self::updateOrCreate(['key' => $key], ['value' => $value]);
+        foreach ($keys as $k => $v) {
+            $arr = ['key' => $k, 'value' => $key[$k][0]];
+            if (array_key_exists(1, $key[$k])) {
+                $arr ['type'] = $key[$k][1];
+            }
+            self::updateOrCreate($arr);
         }
 
         // @todo: return the option
