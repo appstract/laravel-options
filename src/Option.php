@@ -35,6 +35,20 @@ class Option extends Model
     }
 
     /**
+     * Get all options in key => value pair
+     *
+     * @return array
+     */
+    public function option_all()
+    {
+        return  array_column(
+        	self::all()->toArray(),
+	        'value',
+	        'key'
+        );
+    }
+
+    /**
      * Get the specified option value.
      *
      * @param  string  $key

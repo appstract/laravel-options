@@ -36,3 +36,15 @@ if (! function_exists('option_exists')) {
         return app('option')->exists($key);
     }
 }
+
+if (! function_exists('option_all')) {
+    /**
+     * Get all options in key => value pair
+     *
+     * @return array
+     */
+    function option_all()
+    {
+        return app('option')->option_all();
+    }
+}

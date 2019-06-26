@@ -32,6 +32,9 @@ option(['someKey' => 'someValue']);
 
 // Check the option exists
 option_exists('someKey');
+
+// Get all options in key => value pair
+option_all();
 ```
 
 If you want to check if an option exists, you can use the facade:
