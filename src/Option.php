@@ -76,7 +76,10 @@ class Option extends Model
         $keys = is_array($key) ? $key : [$key => $value];
 
         foreach ($keys as $key => $value) {
-            self::updateOrCreate(['key' => $key], ['value' => $value]);
+        	if($value == null)
+        		$this->remove($key);
+        	else
+                self::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
         // @todo: return the option
