@@ -16,7 +16,9 @@
         }
     ],
     "require": {
-        "php": ">=5.6"
+        "php": ">=5.6",
+        "psr/simple-cache": "^1.0",
+        "laravel/framework":"^5.0"
     },
     "require-dev": {
         "orchestra/database": "^3.7",
