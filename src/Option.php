@@ -4,8 +4,13 @@ namespace Appstract\Options;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Option
+ */
 class Option extends Model
 {
+    use ValidMinutesAttribute;
+
     /**
      * Indicates if the model should be timestamped.
      *
@@ -24,6 +29,19 @@ class Option extends Model
     ];
 
     /**
+     * User exposed observable events.
+     *
+     * These are extra user-defined events observers may subscribe to.
+     *
+     * @var array
+     */
+    protected $observables = [
+        'finding',
+        'found',
+        'exists',
+    ];
+
+    /**
      * Determine if the given option value exists.
      *
      * @param  string  $key
@@ -31,7 +49,11 @@ class Option extends Model
      */
     public function exists($key)
     {
-        return self::where('key', $key)->exists();
+        $exists = self::where('key', $key)->exists();
+
+        $this->fill(['key' => $key])->fireModelEvent('exists', false);
+
+        return $exists;
     }
 
     /**
@@ -43,11 +65,19 @@ class Option extends Model
      */
     public function get($key, $default = null)
     {
-        if ($option = self::where('key', $key)->first()) {
-            return $option->value;
+        if (($option = $this->fireModelEvent('finding', false)) instanceof Option) {
+            $value = $option->value;
+            $this->fill($option->getAttributes());
+        } elseif ($option = self::where('key', $key)->first()) {
+            $value = $option->value;
+            $this->fill($option->getAttributes());
+        } else {
+            $value = $default;
         }
 
-        return $default;
+        $this->fireModelEvent('found', false);
+
+        return $value;
     }
 
     /**
@@ -76,6 +106,42 @@ class Option extends Model
      */
     public function remove($key)
     {
-        return (bool) self::where('key', $key)->delete();
+        $isSuccess = (bool) self::where('key', $key)->delete();
+
+        $this->fill(['key' => $key])->fireModelEvent('deleted', false);
+
+        return $isSuccess;
+    }
+
+    /**
+     * Override method to
+     * @param array|object|string $class
+     */
+    public static function observe($class)
+    {
+        parent::observe($class);
+
+        if (method_exists($class, 'getRemoveObservableEvents')) {
+            $events = $class->getRemoveObservableEvents();
+        } else {
+            $events = [];
+        }
+
+        foreach ($events as $event) {
+            static::removeModelEvent($event);
+        }
+    }
+
+    /**
+     * Remove a model event with the dispatcher
+     * @param $event
+     */
+    public static function removeModelEvent($event)
+    {
+        if (isset(static::$dispatcher)) {
+            $name = get_called_class();
+
+            static::$dispatcher->forget("eloquent.{$event}: {$name}");
+        }
     }
 }
