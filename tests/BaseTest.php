@@ -2,9 +2,9 @@
 
 namespace Appstract\Options\Test;
 
-use Orchestra\Testbench\TestCase;
 use Appstract\Options\OptionFacade;
 use Appstract\Options\OptionsServiceProvider;
+use Orchestra\Testbench\TestCase;
 
 abstract class BaseTest extends TestCase
 {

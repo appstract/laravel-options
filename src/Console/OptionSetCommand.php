@@ -2,8 +2,8 @@
 
 namespace Appstract\Options\Console;
 
-use Illuminate\Console\Command;
 use Appstract\Options\OptionFacade as Option;
+use Illuminate\Console\Command;
 
 class OptionSetCommand extends Command
 {
