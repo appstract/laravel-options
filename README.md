@@ -30,6 +30,9 @@ With the `option()` helper, we can get and set options:
 // Get option
 option('someKey');
 
+// Get option, with a default fallback value if the key doesn't exist
+option('someKey', 'Some default value if the key is not found');
+
 // Set option
 option(['someKey' => 'someValue']);
 
