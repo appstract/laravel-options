@@ -16,13 +16,13 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
-        "illuminate/support": "^5.4|^6.0",
-        "illuminate/database": "^5.4|^6.0"
+        "php": ">=7.2.5",
+        "illuminate/support": "^7.0",
+        "illuminate/database": "^7.0"
     },
     "require-dev": {
-        "orchestra/database": "^3.7",
-        "orchestra/testbench": "~3.7"
+        "orchestra/database": "^5.0",
+        "orchestra/testbench": "~5.0"
     },
     "autoload": {
         "files": [
