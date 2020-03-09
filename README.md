@@ -5,12 +5,6 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://travis-ci.org/appstract/laravel-options.svg?branch=master)](https://travis-ci.org/appstract/laravel-options)
 
-__For Laravel ^5.4|^6.x, check [version 3.0](https://github.com/appstract/laravel-options/tree/3.0.0)__
-```shell script
-# Laravel ^5.4|^6.x installation:
-composer require appstract/laravel-options ^3.0
-```
-
 Global key-value store in the database
 
 ## Installation
