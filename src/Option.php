@@ -14,6 +14,15 @@ class Option extends Model
     public $timestamps = false;
 
     /**
+     * Casts.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'value' => 'json',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var [type]

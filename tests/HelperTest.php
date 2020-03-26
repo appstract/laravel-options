@@ -17,7 +17,7 @@ class HelperTest extends BaseTest
     {
         option(['foo' => 'bar']);
 
-        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
+        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => '"bar"']);
     }
 
     /** @test */
@@ -49,10 +49,19 @@ class HelperTest extends BaseTest
     {
         option(['foo' => 'bar']);
 
-        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
+        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => '"bar"']);
 
         option()->remove('foo');
 
-        $this->assertDatabaseMissing('options', ['key' => 'foo', 'value' => 'bar']);
+        $this->assertDatabaseMissing('options', ['key' => 'foo', 'value' => '"bar"']);
+    }
+
+    /** @test */
+    public function it_can_store_arrays()
+    {
+        option(['foo' => ['bar', 'baz']]);
+
+        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => '["bar","baz"]']);
+        $this->assertEquals(option('foo'), ['bar', 'baz']);
     }
 }
