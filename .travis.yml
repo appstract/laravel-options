@@ -8,8 +8,9 @@ env:
   - LARAVEL_VERSION=^6.0
   - LARAVEL_VERSION=^7.0
 
-before_script:
+install:
   - travis_retry composer self-update
+  - composer require laravel/framework:${LARAVEL_VERSION}
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 script:
