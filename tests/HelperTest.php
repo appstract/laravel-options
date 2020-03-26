@@ -16,7 +16,6 @@ class HelperTest extends BaseTest
     public function it_can_set()
     {
         option(['foo' => 'bar']);
-
         $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => 'bar']);
     }
 
@@ -54,5 +53,17 @@ class HelperTest extends BaseTest
         option()->remove('foo');
 
         $this->assertDatabaseMissing('options', ['key' => 'foo', 'value' => 'bar']);
+    }
+
+    /** @test */
+    public function set_array_value()
+    {
+        $array = ['foofoo' => 'foofoobar', 'foobar' => 'foobarbar'];
+
+        option(['foo' => $array]);
+        $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => json_encode($array)]);
+
+        $result = option('foo');
+        $this->assertTrue($array == $result);
     }
 }

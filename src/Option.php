@@ -24,6 +24,38 @@ class Option extends Model
     ];
 
     /**
+     * Value Muttator to json encode array values
+     *
+     * @param   mixed   $value
+     * @return  void
+     */
+    public function setValueAttribute($value)
+    {
+        if (is_array($value)) {
+            $value = json_encode($value);
+        }
+
+        $this->attributes['value'] = $value;
+    }
+
+    /**
+     * Value Accessor to json decode array values
+     *
+     * @return  mixed   $value
+     */
+    public function getValueAttribute()
+    {
+        $value = $this->attributes['value'];
+        $jValue = @json_decode($value, true);
+
+        if (is_array($jValue)) {
+            return $jValue;
+        }
+
+        return $value;
+    }
+
+    /**
      * Determine if the given option value exists.
      *
      * @param  string  $key
