@@ -5,8 +5,8 @@ php:
   - 7.3
 
 env:
-  matrix:
-    - COMPOSER_FLAGS=""
+  - LARAVEL_VERSION=^6.0
+  - LARAVEL_VERSION=^7.0
 
 before_script:
   - travis_retry composer self-update
