@@ -33,6 +33,9 @@ option('someKey', 'Some default value if the key is not found');
 // Set option
 option(['someKey' => 'someValue']);
 
+// Remove option
+option()->remove('someKey');
+
 // Check the option exists
 option_exists('someKey');
 ```
