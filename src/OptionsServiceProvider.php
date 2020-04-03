@@ -22,9 +22,6 @@ class OptionsServiceProvider extends ServiceProvider
                 \Appstract\Options\Console\OptionSetCommand::class,
             ]);
         }
-
-        // Register migrations
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
