@@ -1,4 +1,5 @@
 <?php
+
 return [
-'model'=> \Appstract\Options\Option::class,
+    'model'=> \Appstract\Options\Option::class,
 ];
