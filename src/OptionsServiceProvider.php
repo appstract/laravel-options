@@ -18,6 +18,12 @@ class OptionsServiceProvider extends ServiceProvider
                 __DIR__.'/../database/migrations' => database_path('migrations'),
             ], 'migrations');
 
+            $this->published([
+                __DIR__.'/../config/config.php' => config_path('options.php')
+            ], 'config');
+
+            $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'options');
+
             $this->commands([
                 \Appstract\Options\Console\OptionSetCommand::class,
             ]);
@@ -29,7 +35,7 @@ class OptionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $option = Config::get('option.model') ?? \Appstract\Options\Option::class;
+        $option = Config::get('options.model') ?? \Appstract\Options\Option::class;
         $this->app->bind('option', $option);
     }
 }
