@@ -3,7 +3,7 @@
 namespace Appstract\Options;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Support\Facades\Config;
 class OptionsServiceProvider extends ServiceProvider
 {
     protected $options;
@@ -29,6 +29,7 @@ class OptionsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('option', \Appstract\Options\Option::class);
+        $option = Config::get('option.model') ?? \Appstract\Options\Option::class;
+        $this->app->bind('option', $option);
     }
 }
