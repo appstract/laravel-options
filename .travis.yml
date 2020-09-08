@@ -8,6 +8,7 @@ php:
 env:
   - LARAVEL_VERSION=^6.0
   - LARAVEL_VERSION=^7.0
+  - LARAVEL_VERSION=^8.0
 
 before_script:
   - travis_retry composer self-update
