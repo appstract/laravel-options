@@ -15,9 +15,14 @@ To get started with laravel-options, use Composer to add the package to your pro
 composer require appstract/laravel-options
 ```
 
-### Publish, migrate
+### Publish
 
-By running `php artisan vendor:publish --provider="Appstract\Options\OptionsServiceProvider"` in your project all files for this package will be published. For this package, it's only a migration. Run `php artisan migrate` to migrate the table. There will now be an `options` table in your database.
+By running `php artisan vendor:publish --provider="Appstract\Options\OptionsServiceProvider"` in your project all files for this package will be published. For this package, it's a migration and a configuration file `options.php`. 
+
+### Migrate
+
+By default, this package creates an `options` table in your database. To change this default, update the `table` index in the configuration file `options.php` before running the migration below.
+Run `php artisan migrate` to migrate the table.
 
 ## Usage
 
