@@ -42,7 +42,7 @@ class Option extends Model
     {
         return self::where('key', $key)->exists();
     }
-    
+
     /**
      * Get the table associated with the model.
      *

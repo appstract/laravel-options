@@ -17,10 +17,10 @@ class OptionsServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../database/migrations' => database_path('migrations'),
             ], 'migrations');
-            
+
             $this->publishes([
-		__DIR__.'/../config/options.php' => config_path('options.php')
-	    ], 'config');
+                __DIR__.'/../config/options.php' => config_path('options.php')
+            ], 'config');
 
             $this->commands([
                 \Appstract\Options\Console\OptionSetCommand::class,
@@ -34,9 +34,9 @@ class OptionsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('option', \Appstract\Options\Option::class);
-        
+
         $this->mergeConfigFrom(
-	    __DIR__.'/../config/options.php', 'options'
+                __DIR__.'/../config/options.php', 'options'
         );
     }
 }
