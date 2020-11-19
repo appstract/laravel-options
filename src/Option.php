@@ -42,6 +42,16 @@ class Option extends Model
     {
         return self::where('key', $key)->exists();
     }
+    
+    /**
+     * Get the table associated with the model.
+     *
+     * @return string
+     */
+    public function getTable()
+    {
+        return config('options.table') ?? parent::getTable();
+    }
 
     /**
      * Get the specified option value.
