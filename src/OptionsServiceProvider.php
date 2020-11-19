@@ -19,7 +19,7 @@ class OptionsServiceProvider extends ServiceProvider
             ], 'migrations');
 
             $this->publishes([
-                __DIR__.'/../config/options.php' => config_path('options.php')
+                __DIR__.'/../config/options.php' => config_path('options.php'),
             ], 'config');
 
             $this->commands([
