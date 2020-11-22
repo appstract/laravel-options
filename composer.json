@@ -21,7 +21,7 @@
         "illuminate/database": "^6.0|^7.0|^8.0"
     },
     "require-dev": {
-        "orchestra/database": "^4.0|^5.0|^6.0|dev-master",
+        "orchestra/database": "^4.0|^5.0|^6.0",
         "orchestra/testbench": "^4.0|^5.0|^6.0"
     },
     "autoload": {
