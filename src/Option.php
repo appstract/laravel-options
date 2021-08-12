@@ -32,10 +32,10 @@ class Option extends Model
         'value',
     ];
 
-    protected static function booted()
+    protected static function boot()
     {
-        foreach (config('options.query_scopes', []) as $queryClass)
-        {
+        parent::boot();
+        foreach (config('options.query_scopes', []) as $queryClass) {
             static::addGlobalScope(new $queryClass);
         }
     }
