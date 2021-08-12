@@ -3,6 +3,9 @@
 namespace Appstract\Options\Test;
 
 use Appstract\Options\Option;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 class HelperTest extends BaseTest
 {
@@ -79,9 +82,6 @@ class HelperTest extends BaseTest
     }
 }
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Scope;
 class IgnoreKeyOfBar implements Scope
 {
     public function apply(Builder $builder, Model $model)
