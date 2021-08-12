@@ -64,4 +64,28 @@ class HelperTest extends BaseTest
         $this->assertDatabaseHas('options', ['key' => 'foo', 'value' => '["bar","baz"]']);
         $this->assertEquals(option('foo'), ['bar', 'baz']);
     }
+
+    /** @test */
+    public function it_can_have_global_query_scopes_applied()
+    {
+        config(['options.query_scopes' => [
+            IgnoreKeyOfBar::class,
+        ]]);
+        option(['foo' => 'bar']);
+        option(['bar' => 'baz']);
+
+        $this->assertEquals('bar', option('foo'));
+        $this->assertEquals(null, option('bar'));
+    }
+}
+
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
+class IgnoreKeyOfBar implements Scope
+{
+    public function apply(Builder $builder, Model $model)
+    {
+        $builder->where('key', '!=', 'bar');
+    }
 }

@@ -56,6 +56,17 @@ It is also possible to set options within the console:
 php artisan option:set {someKey} {someValue}
 ```
 
+### Query Scopes
+
+You can use Laravel's global query scopes to filter the returned results if you need some extra control.  For instance if you had added an `is_active` boolean column to the `options` table and wanted to limit queries based on a scope you had defined then you can create a `config/options.php` file with :
+```php
+return [
+    'query_scopes' => [
+        \App\Scopes\OnlyActiveOptionsScope::class,
+    ],
+];
+```
+Then that scope will be applied globally to your `option()` calls and the facade.
 ## Testing
 
 ```bash

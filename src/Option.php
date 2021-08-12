@@ -32,6 +32,14 @@ class Option extends Model
         'value',
     ];
 
+    protected static function booted()
+    {
+        foreach (config('options.query_scopes', []) as $queryClass)
+        {
+            static::addGlobalScope(new $queryClass);
+        }
+    }
+
     /**
      * Determine if the given option value exists.
      *
