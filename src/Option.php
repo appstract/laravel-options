@@ -47,7 +47,7 @@ class Option extends Model
      * Get the specified option value.
      *
      * @param  string  $key
-     * @param  mixed   $default
+     * @param  mixed  $default
      * @return mixed
      */
     public function get($key, $default = null)
@@ -63,7 +63,7 @@ class Option extends Model
      * Set a given option value.
      *
      * @param  array|string  $key
-     * @param  mixed   $value
+     * @param  mixed  $value
      * @return void
      */
     public function set($key, $value = null)
