@@ -3,11 +3,13 @@ language: php
 php:
   - 7.3
   - 7.4
+  - 8.0
 
 env:
   - LARAVEL_VERSION=^6.0
   - LARAVEL_VERSION=^7.0
   - LARAVEL_VERSION=^8.0
+  - LARAVEL_VERSION=^9.0
 
 before_script:
   - travis_retry composer self-update
