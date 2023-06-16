@@ -3,6 +3,7 @@
 namespace Appstract\Options;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class Option extends Model
 {
@@ -25,9 +26,19 @@ class Option extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var [type]
+     * @var array
      */
     protected $fillable = [
+        'key',
+        'value',
+    ];
+
+    /**
+     * The attributes that are visible.
+     *
+     * @var array
+     */
+    protected $visible = [
         'key',
         'value',
     ];
@@ -53,7 +64,9 @@ class Option extends Model
     public function get($key, $default = null)
     {
         if ($option = self::where('key', $key)->first()) {
-            return $option->value;
+            $value = $option->encrypted() ? decrypt($option->value) : $option->value;
+
+            return is_array($value) ? (object) $value : $value;
         }
 
         return $default;
@@ -64,17 +77,17 @@ class Option extends Model
      *
      * @param  array|string  $key
      * @param  mixed  $value
-     * @return void
+     * @return \Appstract\Options\Option
      */
     public function set($key, $value = null)
     {
         $keys = is_array($key) ? $key : [$key => $value];
 
         foreach ($keys as $key => $value) {
-            self::updateOrCreate(['key' => $key], ['value' => $value]);
+            $option = self::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
-        // @todo: return the option
+        return $option;
     }
 
     /**
@@ -86,5 +99,32 @@ class Option extends Model
     public function remove($key)
     {
         return (bool) self::where('key', $key)->delete();
+    }
+
+    /**
+     * Encrypt option value after set() is called.
+     * 
+     * @return \Appstract\Options\Option
+     */
+    public function crypt()
+    {
+        self::where('key', $this->key)
+            ->update(['value' => json_encode(encrypt($this->value))]);
+
+        return $this;
+    }
+
+    /**
+     * Determine if the option value is encrypted.
+     * 
+     * @return bool
+     */
+    public function encrypted()
+    {
+        try {
+            return (bool) decrypt($this->value);
+        } catch (DecryptException $e) {
+            return false;
+        }
     }
 }
