@@ -28,14 +28,10 @@ With the `option()` helper, we can get and set options:
 option('someKey');
 
 // Get option, with a default fallback value if the key doesn't exist
-// If option value is encrypted, automatically decrypt before return value
 option('someKey', 'Some default value if the key is not found');
 
 // Set option
 option(['someKey' => 'someValue']);
-
-// Set option and encrypt value
-option(['someKey' => 'someValueToEncrypt'])->crypt();
 
 // Remove option
 option()->remove('someKey');
@@ -59,8 +55,6 @@ It is also possible to set options within the console:
 ```bash
 php artisan option:set {someKey} {someValue}
 ```
-
-Optionally you can dd `--crypt` option to encrypt value.
 
 ## Testing
 

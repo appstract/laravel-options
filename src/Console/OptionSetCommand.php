@@ -14,8 +14,7 @@ class OptionSetCommand extends Command
      */
     protected $signature = 'option:set
                             {key : Option key}
-                            {value : Option value}
-                            {--crypt : Encrypt option value (optional)}';
+                            {value : Option value}';
 
     /**
      * The console command description.
@@ -31,11 +30,7 @@ class OptionSetCommand extends Command
      */
     public function handle()
     {
-        $option = Option::set($this->argument('key'), $this->argument('value'));
-
-        if ($this->option('crypt')) {
-            $option->crypt();
-        }
+        Option::set($this->argument('key'), $this->argument('value'));
 
         $this->info('Option added.');
     }
