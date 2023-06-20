@@ -103,7 +103,7 @@ class Option extends Model
 
     /**
      * Encrypt option value after set() is called.
-     * 
+     *
      * @return \Appstract\Options\Option
      */
     public function crypt()
@@ -116,7 +116,7 @@ class Option extends Model
 
     /**
      * Determine if the option value is encrypted.
-     * 
+     *
      * @return bool
      */
     public function encrypted()
