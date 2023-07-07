@@ -48,18 +48,15 @@ use Option;
 $check = Option::exists('someKey');
 ```
 
-With the blade directive, we can get the value and check if the options exists:
+The helpers are available as Blade directives:
 ```php
-// Get option
 @option('someKey')
 
-// Get option, with a default fallback value if the key doesn't exist
-@option('someKey', 'DEFAULT VALUE')
+@option('someKey', 'Default value')
 
-// Check the option exists
-@optionexists('someKey')
-//DO SOMETHING
-@endoptionexists
+@optionExists('someKey')
+    // Code
+@endif
 ```
 
 ### Console
