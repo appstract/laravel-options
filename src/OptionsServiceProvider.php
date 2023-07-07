@@ -59,7 +59,7 @@ class OptionsServiceProvider extends ServiceProvider
             },
 
             'endoptionexists' => function () {
-                return "<?php endif; ?>";
+                return '<?php endif; ?>';
             },
         ];
     }
