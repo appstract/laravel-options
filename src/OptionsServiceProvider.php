@@ -2,6 +2,7 @@
 
 namespace Appstract\Options;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class OptionsServiceProvider extends ServiceProvider
@@ -30,5 +31,36 @@ class OptionsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('option', \Appstract\Options\Option::class);
+
+        collect($this->getDirectives())->each(function ($item, $key) {
+            Blade::directive($key, $item);
+        });
+    }
+
+    /**
+     * @return array
+     */
+    private function getDirectives(): array
+    {
+        return [
+
+            /*
+            |---------------------------------------------------------------------
+            | @option, @option_exists, @endoptionexists
+            |---------------------------------------------------------------------
+            */
+
+            'option' => function ($key, $default_value = null) {
+                return "<?php echo option({$key}, $default_value); ?>";
+            },
+
+            'optionexists' => function ($key) {
+                return "<?php if (option_exists({$key})) : ?>";
+            },
+
+            'endoptionexists' => function () {
+                return '<?php endif; ?>';
+            },
+        ];
     }
 }
