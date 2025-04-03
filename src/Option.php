@@ -35,7 +35,8 @@ class Option extends Model
     /**
      * Determine if the given option value exists.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function exists($key)
@@ -46,8 +47,9 @@ class Option extends Model
     /**
      * Get the specified option value.
      *
-     * @param  string  $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -62,8 +64,9 @@ class Option extends Model
     /**
      * Set a given option value.
      *
-     * @param  array|string  $key
-     * @param  mixed  $value
+     * @param array|string $key
+     * @param mixed        $value
+     *
      * @return void
      */
     public function set($key, $value = null)
@@ -80,7 +83,8 @@ class Option extends Model
     /**
      * Remove/delete the specified option value.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function remove($key)
