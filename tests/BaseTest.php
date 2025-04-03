@@ -6,7 +6,7 @@ use Appstract\Options\OptionFacade;
 use Appstract\Options\OptionsServiceProvider;
 use Orchestra\Testbench\TestCase;
 
-abstract class BaseTest extends TestCase
+class BaseTest extends TestCase
 {
     /**
      * Define environment setup.
