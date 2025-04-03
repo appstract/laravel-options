@@ -4,7 +4,7 @@ namespace Appstract\Options\Test;
 
 use Appstract\Options\Option;
 
-class HelperTest extends BaseTest
+class HelperTest extends Base
 {
     /** @test */
     public function it_can_get_instance()
