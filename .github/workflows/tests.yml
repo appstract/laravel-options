@@ -5,6 +5,7 @@ on:
     paths:
       - '**.php'
       - '.github/workflows/tests.yml'
+      - 'composer.json'
 
 #on: [pull_request]
 
