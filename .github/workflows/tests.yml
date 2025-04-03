@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**.php'
+      - '.github/workflows/tests.yml'
 
 #on: [pull_request]
 
