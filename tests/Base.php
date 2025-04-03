@@ -11,7 +11,8 @@ class Base extends TestCase
     /**
      * Define environment setup.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
@@ -20,10 +21,11 @@ class Base extends TestCase
         $app['config']->set('database.default', 'testbench');
 
         $app['config']->set(
-            'database.connections.testbench', [
-                'driver' => 'sqlite',
+            'database.connections.testbench',
+            [
+                'driver'   => 'sqlite',
                 'database' => ':memory:',
-                'prefix' => '',
+                'prefix'   => '',
             ]
         );
     }
@@ -41,7 +43,8 @@ class Base extends TestCase
     /**
      * Get package providers.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return array
      */
     protected function getPackageProviders($app)
@@ -54,7 +57,8 @@ class Base extends TestCase
     /**
      * Get package aliases.
      *
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param \Illuminate\Foundation\Application $app
+     *
      * @return array
      */
     protected function getPackageAliases($app)

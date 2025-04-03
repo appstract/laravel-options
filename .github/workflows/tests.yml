@@ -1,13 +1,6 @@
 name: Tests
 
-on:
-  push:
-    paths:
-      - '**.php'
-      - '.github/workflows/tests.yml'
-      - 'composer.json'
-
-#on: [pull_request]
+on: [pull_request]
 
 jobs:
   test:
