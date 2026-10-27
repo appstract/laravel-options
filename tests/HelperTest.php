@@ -3,17 +3,27 @@
 namespace Appstract\Options\Test;
 
 use Appstract\Options\Option;
+use Illuminate\Support\Facades\Blade;
 
 class HelperTest extends Base
 {
     /** @test */
-    public function it_can_get_instance()
+    public function test_it_can_get_instance()
     {
         $this->assertInstanceOf(Option::class, option());
     }
 
     /** @test */
-    public function it_can_set()
+    public function test_it_can_render_the_option_blade_directive_with_and_without_a_default()
+    {
+        option(['foo' => 'bar']);
+
+        $this->assertSame('bar', Blade::render("@option('foo')"));
+        $this->assertSame('baz', Blade::render("@option('missing', 'baz')"));
+    }
+
+    /** @test */
+    public function test_it_can_set()
     {
         option(['foo' => 'bar']);
 
@@ -21,13 +31,13 @@ class HelperTest extends Base
     }
 
     /** @test */
-    public function it_can_get_default()
+    public function test_it_can_get_default()
     {
         $this->assertEquals('baz', option('foo', 'baz'));
     }
 
     /** @test */
-    public function it_can_get()
+    public function test_it_can_get()
     {
         option(['foo' => 'bar']);
 
@@ -35,7 +45,7 @@ class HelperTest extends Base
     }
 
     /** @test */
-    public function it_can_check_if_exists()
+    public function test_it_can_check_if_exists()
     {
         $this->assertFalse(option_exists('foo'));
 
@@ -45,7 +55,7 @@ class HelperTest extends Base
     }
 
     /** @test */
-    public function it_can_remove()
+    public function test_it_can_remove()
     {
         option(['foo' => 'bar']);
 
@@ -57,7 +67,7 @@ class HelperTest extends Base
     }
 
     /** @test */
-    public function it_can_store_arrays()
+    public function test_it_can_store_arrays()
     {
         option(['foo' => ['bar', 'baz']]);
 
